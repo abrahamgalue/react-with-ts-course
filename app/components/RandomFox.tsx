@@ -1,8 +1,8 @@
-const random = () => Math.floor(Math.random() * 123) + 1
+type Props = {
+  image: string
+}
 
-const RandomFox = () => {
-  const image = `http://randomfox.ca/images/${random()}.jpg`
-
+const RandomFox = ({ image }: Props) => {
   return (
     <picture>
       <img
