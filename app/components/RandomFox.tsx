@@ -1,20 +1,25 @@
+import { useRef } from "react";
+
 type Props = {
-  image: string
-}
+  image: string;
+};
 
 const RandomFox = ({ image }: Props) => {
+  const node = useRef<HTMLImageElement>(null);
+
   return (
     <picture>
       <img
-        alt='random fox image'
-        className='rounded'
-        height='auto'
+        alt="random fox image"
+        className="rounded"
+        height="auto"
+        ref={node}
         src={image}
         width={320}
       />
     </picture>
-  )
-}
+  );
+};
 
 // const RandomFox = (): JSX.Element => {
 //   return <img />
@@ -28,4 +33,4 @@ const RandomFox = ({ image }: Props) => {
 //   return <img />
 // }
 
-export default RandomFox
+export default RandomFox;
