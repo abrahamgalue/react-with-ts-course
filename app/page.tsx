@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import type { MouseEventHandler } from "react";
-import RandomFox from "@/app/components/RandomFox";
+import LazyImage from "@/app/components/RandomFox";
 
 const random = () => Math.floor(Math.random() * 123) + 1;
 const generateId = () => crypto.randomUUID();
@@ -29,7 +29,14 @@ export default function Home() {
         <button onClick={addNewFox}>Add new fox</button>
         {images.map(({ id, url }) => (
           <div key={id} className="p-4">
-            <RandomFox image={url} />
+            <LazyImage
+              alt="random fox image"
+              className="rounded bg-gray-300"
+              height="auto"
+              onClick={() => console.log("Hello image")}
+              src={url}
+              width={320}
+            />
           </div>
         ))}
       </main>

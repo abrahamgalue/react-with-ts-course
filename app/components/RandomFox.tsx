@@ -1,11 +1,17 @@
 import { useRef, useEffect, useState } from "react";
+import type { ImgHTMLAttributes } from "react";
 
-type Props = {
-  image: string;
+type lazyImageProps = {
+  src: string;
+  alt: string;
 };
 
-const RandomFox = ({ image }: Props) => {
-  const [src, setSrc] = useState(
+type ImageNativeTypes = ImgHTMLAttributes<HTMLImageElement>;
+
+type Props = lazyImageProps & ImageNativeTypes;
+
+const LazyImage = ({ src, alt, ...imgProps }: Props) => {
+  const [currentSrc, setCurrentSrc] = useState(
     "https://signfix.com.au/wp-content/uploads/2017/09/placeholder-600x400.png"
   );
   const node = useRef<HTMLImageElement>(null);
@@ -16,7 +22,7 @@ const RandomFox = ({ image }: Props) => {
       entries.forEach((entry) => {
         // onIntersection
         if (entry.isIntersecting) {
-          setSrc(image);
+          setCurrentSrc(src);
         }
       });
     });
@@ -30,18 +36,11 @@ const RandomFox = ({ image }: Props) => {
     return () => {
       observer.disconnect();
     };
-  }, [image]);
+  }, [src]);
 
   return (
     <picture>
-      <img
-        alt="random fox image"
-        className="rounded bg-gray-300"
-        height="auto"
-        ref={node}
-        src={src}
-        width={320}
-      />
+      <img alt={alt} ref={node} src={currentSrc} {...imgProps} />
     </picture>
   );
 };
@@ -58,4 +57,4 @@ const RandomFox = ({ image }: Props) => {
 //   return <img />
 // }
 
-export default RandomFox;
+export default LazyImage;
