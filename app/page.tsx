@@ -6,15 +6,13 @@ import LazyImage from "@/app/components/RandomFox";
 const random = () => Math.floor(Math.random() * 123) + 1;
 const generateId = () => crypto.randomUUID();
 
-type ImageItem = { id: string; url: string };
-
 export default function Home() {
-  const [images, setImages] = useState<ImageItem[]>([]);
+  const [images, setImages] = useState<IFoxImageItem[]>([]);
 
   const addNewFox: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.preventDefault();
 
-    const newImageItem: ImageItem = {
+    const newImageItem: IFoxImageItem = {
       id: generateId(),
       url: `http://randomfox.ca/images/${random()}.jpg`,
     };
