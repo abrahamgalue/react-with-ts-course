@@ -14,7 +14,7 @@ export default function Home() {
 
     const newImageItem: IFoxImageItem = {
       id: generateId(),
-      url: `http://randomfox.ca/images/${random()}.jpg`,
+      url: `https://randomfox.ca/images/${random()}.jpg`,
     };
 
     setImages([...images, newImageItem]);
